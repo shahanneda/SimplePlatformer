@@ -51,11 +51,15 @@ public class Knight_Movement : MonoBehaviour {
             animator.SetFloat("Walking", 0f);
         }
         
+        if(transform.position.y < -25)
+        {
+            LevelManager.Restart();
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.gameObject.CompareTag("Floor"))
+        if (collision.collider.gameObject.GetComponent<TileManager>().isGround)
         {
             isJumping = false;
             animator.SetBool("Jumping", false);
